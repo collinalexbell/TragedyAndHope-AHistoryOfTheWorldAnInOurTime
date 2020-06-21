@@ -5,12 +5,17 @@ import timeline.Timeline
 import cats.instances.string._
 import cats.syntax.semigroup._
 
-case class Area(name: String)
+trait Growable {
+  def growth: Double
+}
+
+case class Area(name: String, growth: Double = Double.PositiveInfinity)
+    extends PeriodableWithGrowable {}
 case class Culture()
 
 abstract class Civilization(
     culture: Culture
-) {
+) extends Periodable {
   var core: List[Area] = List()
   var peripheral: List[Area] = List()
   var semiPeripheral: List[Area] = List()
@@ -40,6 +45,17 @@ abstract class Civilization(
         .reduce((a, b) => a |+| ", " |+| b)
     )
 
+  def startExpansion() = {
+    core = core.map(_.copy(growth = 2))
+    semiPeripheral = semiPeripheral.map(_.copy(growth = 1.5))
+    peripheral = peripheral.map(_.copy(growth = 1.3))
+  }
+
+  def midExpansion() = {
+    core = core.map(_.copy(growth = 1.5))
+    semiPeripheral = semiPeripheral.map(_.copy(growth = 1.6))
+    peripheral = peripheral.map(_.copy(growth = 1.8))
+  }
 }
 
 object Civilization {

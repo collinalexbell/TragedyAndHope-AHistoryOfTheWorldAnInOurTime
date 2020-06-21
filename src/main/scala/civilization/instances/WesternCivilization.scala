@@ -7,8 +7,27 @@ import civilization._
 object WesternCivilization extends Civilization(Culture()) {
   println("Hello " |+| "Western Civilization!")
 
-  core = List(Area("Europe"))
-  peripheral = List(Area("America"), Area("Austrailia"))
+  timeline + (fmt.parse("01/01/400") -> Born())
+
+  core = List(
+    Area("northern half of Italy"),
+    Area("France"),
+    Area("the extreme western part of Germany"),
+    Area("England")
+  )
+  semiPeripheral = List(
+    Area("central Europe"),
+    Area("eastern Europe"),
+    Area("southern Europe"),
+    Area("Iberian peninsula")
+  )
+  peripheral = List(
+    Area("North America"),
+    Area("South America"),
+    Area("Austrailia"),
+    Area("New Zealand"),
+    Area("South Africa")
+  )
 
   override val questions: List[String] = List(
     "Where are we going?",
