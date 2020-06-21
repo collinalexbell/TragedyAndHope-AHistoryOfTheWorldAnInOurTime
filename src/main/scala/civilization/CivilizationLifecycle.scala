@@ -43,11 +43,11 @@ trait PeriodableWithGrowable extends Periodable with Growable {
 }
 
 object Periodable {
-  def nextPeriod(civ: Periodable): PeriodOfLife = {
-    civ.periodOfLife match {
+  def nextPeriod(p: Periodable): PeriodOfLife = {
+    p.periodOfLife match {
       case Born()                => Expansion()
       case Expansion(_, _, _, _) => AgeOfConflict()
-      case AgeOfConflict(_, _, _, _, _, _) if civ == WesternCivilization =>
+      case AgeOfConflict(_, _, _, _, _, _) if p == WesternCivilization =>
         Expansion()
       case AgeOfConflict(_, _, _, _, _, _) => GoldenAge()
       case GoldenAge()                     => DeathCrisis()

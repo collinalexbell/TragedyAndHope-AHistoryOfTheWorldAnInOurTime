@@ -2,7 +2,7 @@ package civilization.instances
 
 import civilization._
 
-object CretanCivilization extends Civilization(Culture()) {
+object CretanCivilization extends Civilization("Cretan", Culture()) {
   core = List(
     Area("Crete")
   )

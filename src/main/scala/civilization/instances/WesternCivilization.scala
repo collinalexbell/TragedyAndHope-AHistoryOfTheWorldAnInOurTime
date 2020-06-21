@@ -1,12 +1,8 @@
 package civilization.instances
 
-import cats.instances.string._
-import cats.syntax.semigroup._
 import civilization._
 
-object WesternCivilization extends Civilization(Culture()) {
-  println("Hello " |+| "Western Civilization!")
-
+object WesternCivilization extends Civilization("Western", Culture()) {
   timeline + (fmt.parse("01/01/400") -> Born())
 
   core = List(

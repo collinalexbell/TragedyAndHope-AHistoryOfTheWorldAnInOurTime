@@ -14,6 +14,7 @@ case class Area(name: String, growth: Double = Double.PositiveInfinity)
 case class Culture()
 
 abstract class Civilization(
+    name: String,
     culture: Culture
 ) extends Periodable {
   var core: List[Area] = List()
@@ -25,9 +26,13 @@ abstract class Civilization(
   val timeline: Timeline = Map()
 
   def describe() = {
+    println("---------------------------------------------------")
+    println(s"The $name civilization")
     describeCore()
     describePeriphery()
+    describeSemiPeripheral()
     describeCulture()
+    println("---------------------------------------------------")
   }
 
   def describeCulture() = { println(s"The culture: $culture") }
@@ -37,6 +42,14 @@ abstract class Civilization(
       .map(_.name)
       .reduce((a, b) => a |+| ", " |+| b)
   )
+
+  def describeSemiPeripheral() =
+    if (!semiPeripheral.isEmpty)
+      println(
+        "The semiPeripheral is " |+| semiPeripheral
+          .map(_.name)
+          .reduce((a, b) => a |+| ", " |+| b)
+      )
 
   def describePeriphery() =
     println(

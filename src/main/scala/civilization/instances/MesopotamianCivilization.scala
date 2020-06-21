@@ -2,7 +2,8 @@ package civilization.instances
 
 import civilization._
 
-object MesopotamianCivilization extends Civilization(Culture()) {
+object MesopotamianCivilization
+    extends Civilization("Mesopotamian", Culture()) {
   timeline + (fmt.parse("01/01/-6000") -> Born())
   timeline + (fmt.parse("01/01/-300") -> Dead())
 
